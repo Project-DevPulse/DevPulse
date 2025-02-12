@@ -1,0 +1,50 @@
+server:
+  port: 5000
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: 'http://127.0.0.1:5050'
+            allow-credentials: true
+            allowedHeaders: '*'
+            allowedMethods:
+              - PUT
+              - GET
+              - POST
+              - DELETE
+              - OPTIONS
+#      routes:
+#        - id: module-service-user
+#          uri: lb://module-service-user
+#          predicates:
+#            - Path=/user/**
+#        - id: module-service-datacollection
+#          uri: lb://module-service-datacollection
+#          predicates:
+#            - Path=/datacollection/**
+#        - id: module-service-analystic
+#          uri: lb://module-service-analystic
+#          predicates:
+#            - Path=/analystic/**
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.cloud.loadbalancer: DEBUG
