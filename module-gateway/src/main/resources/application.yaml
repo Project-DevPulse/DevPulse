@@ -20,19 +20,31 @@ spring:
               - POST
               - DELETE
               - OPTIONS
-#      routes:
-#        - id: module-service-user
-#          uri: lb://module-service-user
-#          predicates:
-#            - Path=/user/**
-#        - id: module-service-datacollection
-#          uri: lb://module-service-datacollection
-#          predicates:
-#            - Path=/datacollection/**
-#        - id: module-service-analystic
-#          uri: lb://module-service-analystic
-#          predicates:
-#            - Path=/analystic/**
+      routes:
+        - id: datacollection
+          uri: lb://datacollection
+          predicates:
+            - Path=/datacollection/**
+        - id: search
+          uri: lb://search
+          predicates:
+            - Path=/search/**
+        - id: recommendation
+          uri: lb://recommendation
+          predicates:
+            - Path=/recommendation/**
+        - id: user
+          uri: lb://user
+          predicates:
+            - Path=/user/**
+        - id: admin
+          uri: lb://admin
+          predicates:
+            - Path=/admin/**
+        - id: content
+          uri: lb://content
+          predicates:
+            - Path=/content/**
 
 eureka:
   instance:
